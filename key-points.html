@@ -113,6 +113,7 @@
             More <i data-feather="chevron-down"></i>
           </button>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+<li><a class="dropdown-item" href="discuss.html">Discussion</a></li>
 <li><a class="dropdown-item" href="reference.html">Reference</a></li>
           </ul>
 </li>
@@ -243,6 +244,90 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush3">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading3">
+        <a href="02-setup.html">2. RStudio Project and Experimental Data</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush4">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading4">
+        <a href="03-import-annotate.html">3. Importing and annotating quantified data into R</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush5">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading5">
+        <a href="04-exploratory-qc.html">4. Exploratory analysis and quality control</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="05-differential-expression.html">5. Differential expression analysis</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="06-extra-design.html">6. Extra exploration of design matrices</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush8">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading8">
+        <a href="07-gene-set-analysis.html">7. Gene set enrichment analysis</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush9">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading9">
+        <a href="08-next-steps.html">8. Next steps</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -267,7 +352,8 @@
                       <li>
                         <a href="profiles.html">Learner Profiles</a>
                       </li>
-                      <li><a href="reference.html">Reference</a></li>
+                      <li><a href="discuss.html">Discussion</a></li>
+<li><a href="reference.html">Reference</a></li>
                     </ul>
 </div>
                 </div>
@@ -315,6 +401,67 @@ use a probabilistic approach to estimate the abundance of each gene or
 transcript.</li>
 <li>Information about annotated genes can be accessed via several
 sources, including Ensembl, UCSC and GENCODE.</li>
+</ul></section><section id="02-setup"><h2 class="section-heading"><a href="02-setup.html">RStudio Project and Experimental Data</a></h2>
+<hr class="half-width">
+<ul>
+<li>Proper organisation of the files required for your project in a
+working directory is crucial for maintaining order and ensuring easy
+access in the future.</li>
+<li>RStudio project serves as a valuable tool for managing your
+project’s working directory and facilitating analysis.</li>
+<li>The <code>download.file</code> function in R can be used for
+downloading datasets from the internet.</li>
+</ul></section><section id="03-import-annotate"><h2 class="section-heading"><a href="03-import-annotate.html">Importing and annotating quantified data into R</a></h2>
+<hr class="half-width">
+<ul>
+<li>Depending on the gene expression quantification tool used, there are
+different ways (often distributed in Bioconductor packages) to read the
+output into a <code>SummarizedExperiment</code> or <code>DGEList</code>
+object for further processing in R.</li>
+<li>Stable gene identifiers such as Ensembl or Entrez IDs should
+preferably be used as the main identifiers throughout an RNA-seq
+analysis, with gene symbols added for easier interpretation.</li>
+</ul></section><section id="04-exploratory-qc"><h2 class="section-heading"><a href="04-exploratory-qc.html">Exploratory analysis and quality control</a></h2>
+<hr class="half-width">
+<ul>
+<li>Exploratory analysis is essential for quality control and to detect
+potential problems with a data set.</li>
+<li>Different classes of exploratory analysis methods expect differently
+preprocessed data. The most commonly used methods expect counts to be
+normalized and log-transformed (or similar- more
+sensitive/sophisticated), to be closer to homoskedastic. Other methods
+work directly on the raw counts.</li>
+</ul></section><section id="05-differential-expression"><h2 class="section-heading"><a href="05-differential-expression.html">Differential expression analysis</a></h2>
+<hr class="half-width">
+<ul>
+<li>With DESeq2, the main steps of a differential expression analysis
+(size factor estimation, dispersion estimation, calculation of test
+statistics) are wrapped in a single function: DESeq().</li>
+<li>Independent filtering of lowly expressed genes is often
+beneficial.</li>
+</ul></section><section id="06-extra-design"><h2 class="section-heading"><a href="06-extra-design.html">Extra exploration of design matrices</a></h2>
+<hr class="half-width">
+<ul>
+<li>The formula framework in R allows creation of design matrices, which
+details the variables expected to be associated with systematic
+differences in gene expression levels.</li>
+<li>Comparisons of interest can be defined using contrasts, which are
+linear combinations of the model coefficients.</li>
+</ul></section><section id="07-gene-set-analysis"><h2 class="section-heading"><a href="07-gene-set-analysis.html">Gene set enrichment analysis</a></h2>
+<hr class="half-width">
+<ul>
+<li>ORA analysis is based on the gene counts and it is based on Fisher’s
+exact test or the hypergeometric distribution.</li>
+<li>In R, it is easy to obtain gene sets from a large number of
+sources.</li>
+</ul></section><section id="08-next-steps"><h2 class="section-heading"><a href="08-next-steps.html">Next steps</a></h2>
+<hr class="half-width">
+<ul>
+<li>RNA-seq data is very versatile and can be used for a number of
+different purposes. It is important, however, to carefully plan one’s
+analyses, to make sure that enough data is available and that abundances
+for appropriate features (e.g., genes, transcripts, or exons) are
+quantified.</li>
 </ul></section>
 </div>
     </main>

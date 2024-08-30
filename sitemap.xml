@@ -4,6 +4,27 @@
     <loc>https://rcac_rnaseq_workshop.github.io/NA/01-intro-to-rnaseq.html</loc>
   </url>
   <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/02-setup.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/03-import-annotate.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/04-exploratory-qc.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/05-differential-expression.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/06-extra-design.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/07-gene-set-analysis.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/08-next-steps.html</loc>
+  </url>
+  <url>
     <loc>https://rcac_rnaseq_workshop.github.io/NA/404.html</loc>
   </url>
   <url>
@@ -16,6 +37,9 @@
     <loc>https://rcac_rnaseq_workshop.github.io/NA/aio.html</loc>
   </url>
   <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/discuss.html</loc>
+  </url>
+  <url>
     <loc>https://rcac_rnaseq_workshop.github.io/NA/images.html</loc>
   </url>
   <url>
@@ -23,6 +47,27 @@
   </url>
   <url>
     <loc>https://rcac_rnaseq_workshop.github.io/NA/instructor/01-intro-to-rnaseq.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/instructor/02-setup.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/instructor/03-import-annotate.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/instructor/04-exploratory-qc.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/instructor/05-differential-expression.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/instructor/06-extra-design.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/instructor/07-gene-set-analysis.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/instructor/08-next-steps.html</loc>
   </url>
   <url>
     <loc>https://rcac_rnaseq_workshop.github.io/NA/instructor/404.html</loc>
@@ -35,6 +80,9 @@
   </url>
   <url>
     <loc>https://rcac_rnaseq_workshop.github.io/NA/instructor/aio.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/instructor/discuss.html</loc>
   </url>
   <url>
     <loc>https://rcac_rnaseq_workshop.github.io/NA/instructor/images.html</loc>
