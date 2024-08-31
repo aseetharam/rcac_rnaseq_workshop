@@ -2,53 +2,25 @@
 title: Setup
 ---
 
-FIXME: Setup instructions live in this document. Please specify the tools and
-the data sets the Learner needs to have installed.
+Ensure that you have the most recent versions of R and RStudio installed on your computer. 
+For detailed instructions on how to do this, you can refer to the section "If you already have R and RStudio installed" 
+in the [Introduction to R](https://carpentries-incubator.github.io/bioc-intro/#r-and-rstudio)
+episode of the [Introduction to data analysis with R and Bioconductor](https://carpentries-incubator.github.io/bioc-intro) lesson.
 
-## Data Sets
+Additionally, you will also need to install the following packages that will be used throughout the lesson. 
 
-<!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
--->
-Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
+```r
+install.packages(c("BiocManager", "remotes"))
+BiocManager::install(c("tidyverse", "SummarizedExperiment",
+                       "ExploreModelMatrix", "AnnotationDbi", "org.Hs.eg.db", 
+                       "org.Mm.eg.db", "csoneson/ConfoundingExplorer",
+                       "DESeq2", "vsn", "ComplexHeatmap", "hgu95av2.db",
+                       "RColorBrewer", "hexbin", "cowplot", "iSEE",
+                       "clusterProfiler", "enrichplot", "kableExtra",
+                       "msigdbr", "gplots", "ggplot2", "simplifyEnrichment",
+                       "apeglm", "microbenchmark", "Biostrings",
+                       "SingleCellExperiment"))
 
-## Software Setup
+```
 
-::::::::::::::::::::::::::::::::::::::: discussion
-
-### Details
-
-Setup for different systems can be presented in dropdown menus via a `solution`
-tag. They will join to this discussion block, so you can give a general overview
-of the software used in this lesson here and fill out the individual operating
-systems (and potentially add more, e.g. online setup) in the solutions blocks.
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::: solution
-
-### Windows
-
-Use PuTTY
-
-:::::::::::::::::::::::::
-
-:::::::::::::::: solution
-
-### MacOS
-
-Use Terminal.app
-
-:::::::::::::::::::::::::
-
-
-:::::::::::::::: solution
-
-### Linux
-
-Use Terminal
-
-:::::::::::::::::::::::::
-
+*If you are attending a workshop, please complete all of the above before the workshop. Should you need help, an instructor will be available 30 minutes before the workshop commences to assist.*
