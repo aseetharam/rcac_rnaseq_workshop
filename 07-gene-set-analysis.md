@@ -500,9 +500,9 @@ microbenchmark(
 
 ``` output
 Unit: microseconds
-   expr     min       lq      mean   median      uq     max neval
- fisher 244.987 252.3005 273.70843 256.0975 278.790 455.399   100
-  hyper   1.463   1.7730   2.88471   2.8455   3.301  20.107   100
+   expr     min       lq      mean   median       uq     max neval
+ fisher 244.635 248.5385 259.11976 250.6975 258.1865 506.174   100
+  hyper   1.442   1.5880   2.39643   1.7735   2.8500  19.206   100
 ```
 
 It is very astonishing that `phyper()` is hundreds of times faster than
@@ -564,7 +564,7 @@ the knowledge of the gene set and is for the inference of the analysis. "GO
 gene sets" and "pathways" specifically refer to the enrichment analysis using
 GO gene sets and pahtway gene sets.
 
-<img src="fig/geneset.svg" />
+<img src="fig/geneset.svg" alt="Gene set, biological term and GO gene set" />
 
 Before we touch the gene set databases, we first summarize the general formats
 of gene sets in R. In most analysis, a gene set is simply treated as a vector
@@ -1066,7 +1066,7 @@ Some gene sets collections may have sub-collections, and they are shown in the
 second column. The description of gene sets collections from MSigDB is in the
 following figure.
 
-<img src="fig/msigdb.png" />
+<img src="fig/msigdb.png" alt="MSigDB gene sets collections" />
 
 The core function `msigdbr()` retrieves gene sets in a specific category (or a
 subcategory if it exists).
@@ -1230,7 +1230,7 @@ resTimeGO = enrichGO(gene = timeDEgenes,
 ```
 
 ``` output
---> Expected input gene ID: 54388,102631559,77782,243897,270624,67378
+--> Expected input gene ID: 19229,13711,231832,16433,72236,13525
 ```
 
 ``` output
@@ -1478,19 +1478,19 @@ mmu00592                               alpha-Linolenic acid metabolism - Mus mus
 mmu04913                                       Ovarian steroidogenesis - Mus musculus (house mouse)
 mmu04061 Viral protein interaction with cytokine and cytokine receptor - Mus musculus (house mouse)
          GeneRatio BgRatio RichFactor FoldEnrichment   zScore       pvalue
-mmu00590    16/460 89/9773  0.1797753       3.819443 5.938227 3.291865e-06
-mmu00591    12/460 55/9773  0.2181818       4.635415 6.008592 7.078537e-06
-mmu00565    11/460 48/9773  0.2291667       4.868795 5.971417 1.035129e-05
-mmu00592     8/460 25/9773  0.3200000       6.798609 6.451518 1.206537e-05
-mmu04913    12/460 64/9773  0.1875000       3.983560 5.321859 3.603009e-05
-mmu04061    14/460 95/9773  0.1473684       3.130938 4.638373 1.321297e-04
+mmu00590    16/460 89/9775  0.1797753       3.820225 5.939230 3.283279e-06
+mmu00591    12/460 55/9775  0.2181818       4.636364 6.009512 7.063895e-06
+mmu00565    11/460 48/9775  0.2291667       4.869792 5.972311 1.033142e-05
+mmu00592     8/460 25/9775  0.3200000       6.800000 6.452371 1.204741e-05
+mmu04913    12/460 64/9775  0.1875000       3.984375 5.322738 3.595842e-05
+mmu04061    14/460 95/9775  0.1473684       3.131579 4.639265 1.318477e-04
              p.adjust       qvalue
-mmu00590 0.0009320498 0.0008096498
-mmu00591 0.0009320498 0.0008096498
-mmu00565 0.0009320498 0.0008096498
-mmu00592 0.0009320498 0.0008096498
-mmu04913 0.0022266593 0.0019342467
-mmu04061 0.0068046814 0.0059110671
+mmu00590 0.0009306627 0.0008084448
+mmu00591 0.0009306627 0.0008084448
+mmu00565 0.0009306627 0.0008084448
+mmu00592 0.0009306627 0.0008084448
+mmu04913 0.0022222304 0.0019303995
+mmu04061 0.0067901568 0.0058984499
                                                                                                        geneID
 mmu00590 18783/19215/211429/329502/78390/19223/67103/242546/13118/18781/18784/11689/232889/15446/237625/11687
 mmu00591                        18783/211429/329502/78390/242546/18781/18784/13113/622127/232889/237625/11687
@@ -2103,7 +2103,7 @@ simplifyGO(GO_ID)
     so the plot is not generated on the fly.
  -->
 
-<img src="fig/simplifyEnrichment.png" />
+<img src="fig/simplifyEnrichment.png" alt="simplifyEnrichment" width="600"/>
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
