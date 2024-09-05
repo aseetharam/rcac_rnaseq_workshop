@@ -112,10 +112,7 @@
           <button class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             More <i data-feather="chevron-down"></i>
           </button>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-<li><a class="dropdown-item" href="discuss.html">Discussion</a></li>
-<li><a class="dropdown-item" href="reference.html">Reference</a></li>
-          </ul>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown"></ul>
 </li>
       </ul>
 </div>
@@ -247,7 +244,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="02-setup.html">2. RStudio Project and Experimental Data</a>
+        <a href="01a-from-reads-to-counts.html">2. Downloading and organizing files</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -259,7 +256,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="03-import-annotate.html">3. Importing and annotating quantified data into R</a>
+        <a href="01b-mapping-reads.html">3. Mapping reads to a reference genome</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -271,7 +268,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="04-exploratory-qc.html">4. Exploratory analysis and quality control</a>
+        <a href="02-setup.html">4. RStudio Project and Experimental Data</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -283,7 +280,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="05-differential-expression.html">5. Differential expression analysis</a>
+        <a href="03-import-annotate.html">5. Importing and annotating quantified data into R</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -295,7 +292,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="06-extra-design.html">6. Extra exploration of design matrices</a>
+        <a href="04-exploratory-qc.html">6. Exploratory analysis and quality control</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -307,7 +304,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="07-gene-set-analysis.html">7. Gene set enrichment analysis</a>
+        <a href="05-differential-expression.html">7. Differential expression analysis</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -319,7 +316,31 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="08-next-steps.html">8. Next steps</a>
+        <a href="06-extra-design.html">8. Extra exploration of design matrices</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush10">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading10">
+        <a href="07-gene-set-analysis.html">9. Gene set enrichment analysis</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush11">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading11">
+        <a href="08-next-steps.html">10. Next steps</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -352,8 +373,7 @@
                       <li>
                         <a href="profiles.html">Learner Profiles</a>
                       </li>
-                      <li><a href="discuss.html">Discussion</a></li>
-<li><a href="reference.html">Reference</a></li>
+
                     </ul>
 </div>
                 </div>
@@ -725,7 +745,532 @@ sources, including Ensembl, UCSC and GENCODE.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</div></section><section id="aio-02-setup"><p>Content from <a href="02-setup.html">RStudio Project and Experimental Data</a></p>
+</div></section><section id="aio-01a-from-reads-to-counts"><p>Content from <a href="01a-from-reads-to-counts.html">Downloading and organizing files</a></p>
+<hr>
+<p>Last updated on 2024-09-05 |
+
+        <a href="https://aseetharam.github.io/rcac_rnaseq_workshop/edit/main/episodes/01a-from-reads-to-counts.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do we process raw RNAseq reads to generate count data?</li>
+<li>What are the key steps involved in quality control, alignment, and
+quantification of RNAseq data?</li>
+<li>How do different tools and parameters affect the outcome of RNAseq
+data processing?</li>
+<li>Why is it important to ensure accurate and consistent read mapping
+and quantification?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Participants will learn the essential steps from raw read quality
+control to the generation of count data.</li>
+<li>Hands-on practice with <code>FastQC</code> to assess the quality of
+raw reads.</li>
+<li>Learn how to use <code>STAR</code> to map reads to a reference
+genome.</li>
+<li>Practice using <code>featureCounts</code> from <code>subreads</code>
+package to generate count data from aligned reads.</li>
+<li>Develop the ability to assess the quality and consistency of the
+resulting count data, identifying and addressing common issues.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<hr class="half-width">
+<p>In RNAseq analysis, transforming raw sequencing data into meaningful
+insights requires a series of well-defined steps. This episode will
+guide you through the essential process of converting raw RNAseq reads
+into count data, which forms the basis for downstream analyses such as
+differential expression and functional annotation.</p>
+<p>We will start with quality control to ensure that the raw data is
+suitable for analysis, followed by the alignment of reads to a reference
+genome or transcriptome. Finally, you’ll learn how to quantify gene
+expression levels by counting the aligned reads associated with each
+gene. Through hands-on exercises, you’ll gain practical experience with
+the tools and techniques that are critical for accurate RNAseq data
+processing.</p>
+<p>Firstly, the reads in FASTQ format are usually stored or transferred
+in compressed formats, often with an extension of <code>.fastq.gz</code>
+or <code>.fq.gz</code>. This compression helps save storage space and
+reduces the time required for data transfer.</p>
+<div id="should-i-uncompress-fastq-files" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<div id="should-i-uncompress-fastq-files" class="callout-inner">
+<h3 class="callout-title">Should I Uncompress fastq files?</h3>
+<div class="callout-content">
+<p>Uncompressing FASTQ files is often unnecessary since many RNAseq
+tools can directly process compressed files, such as those in
+<code>.gz</code> format. Keeping FASTQ files compressed not only saves
+storage space but also reduces the time and computational resources
+required for data handling. It’s generally more efficient to work with
+compressed files, especially when dealing with large datasets.</p>
+</div>
+</div>
+</div>
+<p>Secondly, library preparation steps of RNAseq usually add adapters
+and other technical sequences that may be present at the ends of
+reads.</p>
+<div id="should-i-trim-adapters-for-rnaseq-analyses" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<div id="should-i-trim-adapters-for-rnaseq-analyses" class="callout-inner">
+<h3 class="callout-title">Should I trim adapters for RNAseq analyses?</h3>
+<div class="callout-content">
+<p>For most RNAseq analyses, trimming adapters is not necessary, as many
+popular mapping programs, like HISAT2 and STAR, can effectively
+soft-clip adapter sequences during the alignment process. However, if
+you are performing more specialized analyses, such as transcript
+assembly or other applications where read length consistency is crucial,
+trimming adapters may be important. Aggressive trimming might actually
+negatively impact expression analyses! <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4766705/" class="external-link">More
+information here</a>.</p>
+</div>
+</div>
+</div>
+<p>For this lesson, we will use a dataset from the experiment
+<fillthissection>. We will start by examining the quality of the reads,
+aligning them to a reference genome, and quantifying gene expression
+levels to generate count data. Before we begin, let’s ensure that we
+have all the data necessary for the analysis.</fillthissection></p>
+</section><section><h2 class="section-heading" id="downloading-the-data-and-organization">Downloading the data and organization<a class="anchor" aria-label="anchor" href="#downloading-the-data-and-organization"></a>
+</h2>
+<hr class="half-width">
+<p>We will begin by downloading the raw reads for our experiment from
+NCBI GEO database. In real world, you will probably obtain your raw
+reads from the sequencing center or from your collaborators, but for
+this lesson, we will download the pre-analyzed data from a public
+repository.</p>
+<div id="what-files-do-i-need-for-rnaseq-analysis" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<div id="what-files-do-i-need-for-rnaseq-analysis" class="callout-inner">
+<h3 class="callout-title">What files do I need for RNAseq analysis?</h3>
+<div class="callout-content">
+<p>The essential files for RNAseq analysis include raw reads, reference
+genome, and annotation files. Raw reads are typically provided in FASTQ
+format, which contains the nucleotide sequences and quality scores of
+the reads. The reference genome is typically provided in FASTA format,
+which contains the nucleotide sequences of the chromosomes or contigs.
+The annotation file is usually in GTF (Gene Transfer Format) or GFF
+(General Feature Format) format, which provides information about the
+genomic features such as genes, transcripts, and exons.</p>
+</div>
+</div>
+</div>
+<p>Maintaining this organized structure ensures a streamlined workflow,
+reduces the risk of errors, and facilitates easier access to files
+throughout the analysis process.</p>
+<div id="create-the-directories-needed-for-this-episode" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="create-the-directories-needed-for-this-episode" class="callout-inner">
+<h3 class="callout-title">Create the directories needed for this episode</h3>
+<div class="callout-content">
+<p>Create a directory to serve as the working directory for the rest of
+this episode and lesson (the workshop example uses a directory called
+<code>rcac_rnaseq</code>). Then, within this chosen directory, create
+the four fundamental directories previously discussed
+(<code>data</code>, <code>scripts</code>, <code>mapping</code>, and
+<code>counts</code>).</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> rcac_rnaseq/<span class="dt">{data</span><span class="op">,</span><span class="dt">scripts</span><span class="op">,</span><span class="dt">mapping</span><span class="op">,</span><span class="dt">counts}</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<figure style="text-align: center"><img src="fig/01_fq2counts/dir_org.png" alt="Your working directory should look like this" width="1163" class="figure mx-auto d-block"><figcaption>
+Your working directory should look like this
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="downloading-the-data">Downloading the data<a class="anchor" aria-label="anchor" href="#downloading-the-data"></a>
+</h2>
+<hr class="half-width">
+<p>The data files include the raw reads, reference genome, and
+annotation files. We will download them to the <code>data</code>
+directory in our working directory.</p>
+<div id="where-will-i-find-the-data-required-for-my-project" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<div id="where-will-i-find-the-data-required-for-my-project" class="callout-inner">
+<h3 class="callout-title">Where will I find the data required for my project?</h3>
+<div class="callout-content">
+<p>The raw reads for your RNAseq experiment will typically be provided
+by the sequencing facility or your collaborators. The reference genome
+and annotation files can be downloaded from public repositories such as
+<a href="https://www.ensembl.org/index.html" class="external-link">Ensembl</a>, <a href="https://genome.ucsc.edu/" class="external-link">UCSC Genome Browser</a>, or <a href="https://www.gencodegenes.org/" class="external-link">Gencode</a> or <a href="https://www.ncbi.nlm.nih.gov/" class="external-link">NCBI</a>. There are also
+specialized databases for several organisms, such as <a href="https://flybase.org/" class="external-link">FlyBase</a>, <a href="https://wormbase.org/" class="external-link">WormBase</a>, <a href="https://www.arabidopsis.org/" class="external-link">TAIR</a>, and <a href="https://www.maizegdb.org/" class="external-link">MaizeGDB</a> for other model
+organisms.</p>
+</div>
+</div>
+</div>
+<p>The raw reads were generated from a mouse model, and we will use the
+mouse reference genome and annotation files for mapping and
+quantification. We will use <a href="https://www.gencodegenes.org/mouse/" class="external-link">GenCode’s GRCm39</a>
+reference genome and annotation files. Once we have the link, we can use
+<code>wget</code> to download the files.</p>
+<div id="annotation" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="annotation" class="callout-inner">
+<h3 class="callout-title">Annotation</h3>
+<div class="callout-content">
+<p>Take a look at the <a href="https://www.gencodegenes.org/mouse/" class="external-link">GenCode’s GRCm39</a> website.
+There are few choices for annotation files (and formats). What
+annotation file (and format) will you download?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
+<figure style="text-align: center"><img src="fig/01_fq2counts/gencode-gtf.png" alt="Basic gene annotation in GTF format" width="2615" class="figure mx-auto d-block"><figcaption>
+Basic gene annotation in GTF format
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<div id="reference-genome" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="reference-genome" class="callout-inner">
+<h3 class="callout-title">Reference genome</h3>
+<div class="callout-content">
+<p>Similarly, what reference genome file will you download?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div class="accordion-body">
+<figure style="text-align: center"><img src="fig/01_fq2counts/gencode-genome.png" alt="Reference genome file in fasta format" width="2224" class="figure mx-auto d-block"><figcaption>
+Reference genome file in fasta format
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<p>Commands to donwload the files are as follows:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="va">GTFlink</span><span class="op">=</span><span class="st">"https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M35/gencode.vM35.primary_assembly.basic.annotation.gtf.gz"</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="va">GENOMElink</span><span class="op">=</span><span class="st">"https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M35/GRCm39.primary_assembly.genome.fa.gz"</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># Download the reference genome</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-P</span> data <span class="va">${GENOMElink}</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># Download the annotation file</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-P</span> data <span class="va">${GTFlink}</span></span></code></pre>
+</div>
+</section><section><h2 class="section-heading" id="raw-reads">Raw reads<a class="anchor" aria-label="anchor" href="#raw-reads"></a>
+</h2>
+<hr class="half-width">
+<p>The raw reads for RNA-seq data required for the subsequent episodes
+were generated to investigate the impact upper-respiratory infection
+have on changes in RNA transcription in the cerebellum and spinal cord
+of mice. This dataset was produced as part of the following study:</p>
+<blockquote>
+<p>Blackmore, Stephen, et al. “Influenza infection triggers disease in a
+genetic model of experimental autoimmune encephalomyelitis.” Proceedings
+of the National Academy of Sciences 114.30 (2017): E6107-E6116.</p>
+</blockquote>
+<p>The dataset is available at <a href="https://www.ncbi.nlm.nih.gov/geo/" class="external-link">Gene Expression Omnibus
+(GEO)</a>, under the accession number <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE96870" class="external-link">GSE96870</a>.</p>
+<figure style="text-align: center"><img src="fig/01_fq2counts/geo-db.png" alt="FASTQ files from GEO" width="1637" class="figure mx-auto d-block"><figcaption>
+FASTQ files from GEO
+</figcaption></figure><div id="where-do-you-find-fastq-files" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="where-do-you-find-fastq-files" class="callout-inner">
+<h3 class="callout-title">Where do you find FASTQ files?</h3>
+<div class="callout-content">
+<p>GEO provides information about the experiment and the raw data files
+accessions. This information is needed for understanding the
+experimental design and contrasts you need to make to get useful
+biological insights. Although GEO provides the metadata, the dataset is
+actually hosted in the SRA (Sequence Read Archive) database. How do you
+find the raw reads for this experiment?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div class="accordion-body">
+<p>Follow the <a href="https://www.ncbi.nlm.nih.gov/sra?term=SRP102241" class="external-link">SRP102241</a>
+link and then click on the <code>Send results to Run selector</code> to
+get the list of runs. This page will provide you with the list of runs
+associated with the experiment. Clicking on the “Accession List” will
+download all the SRR ids you need.</p>
+<figure style="text-align: center"><img src="fig/01_fq2counts/srr-runs.png" alt="FASTQ files from GEO" width="2753" class="figure mx-auto d-block"><figcaption>
+FASTQ files from GEO
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<p>For downloading the raw reads, we will use the
+<code>fasterq-dump</code> tool from the SRA Toolkit. The following
+command will download the raw reads for the experiment:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">module</span> load sratoolkit</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="cf">while</span> <span class="bu">read</span> <span class="va">SRR</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="ex">fasterq-dump</span> <span class="at">-O</span> data <span class="va">${SRR}</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="cf">done</span> <span class="op">&lt;</span> data/SRR_Acc_List.txt</span></code></pre>
+</div>
+<p>As there are many files to download, and the process may take some
+time, we will use the previously downloaded files for the rest of the
+episode. The files are located in the <code>depot</code> directory and
+can be soft-linked to the <code>data</code> directory.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> /depot/data/GSE96870/SRR<span class="pp">*</span> data/</span></code></pre>
+</div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<ul>
+<li>Raw reads are typically provided in FASTQ format, which contains the
+nucleotide sequences and quality scores of the reads.</li>
+<li>Reference genome and annotation files are essential for mapping and
+quantification of RNAseq data.</li>
+<li>Organizing data files in a structured manner facilitates efficient
+data handling and analysis.</li>
+<li>Tools such as <code>wget</code> and <code>fasterq-dump</code> can be
+used to download data files from public repositories.</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-01b-mapping-reads"><p>Content from <a href="01b-mapping-reads.html">Mapping reads to a reference genome</a></p>
+<hr>
+<p>Last updated on 2024-09-05 |
+
+        <a href="https://aseetharam.github.io/rcac_rnaseq_workshop/edit/main/episodes/01b-mapping-reads.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How can we map raw reads to a reference genome?</li>
+<li>What programs are available for mapping reads to a reference
+genome?</li>
+<li>What opitons and parameters need to be considered when mapping?</li>
+<li>How do to access the mapping results?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Understand the process of mapping raw reads to a reference
+genome.</li>
+<li>Fine tune the mapping process by adjusting parameters.</li>
+<li>Access the mapping results.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<hr class="half-width">
+<p>In this episode, we will learn how to map raw reads to a reference
+genome. Mapping is the process of aligning short reads to a reference
+genome. The goal of mapping is to determine the location of the reads in
+the reference genome. We will use the RNA-seq data that we downloaded
+(soft-linked) in the previous episode and map them to the reference
+genome using the STAR aligner. STAR is a fast and accurate RNA-seq
+aligner that can align reads to the reference genome with high
+sensitivity and specificity.</p>
+<div id="what-mapping-programs-should-i-use" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<div id="what-mapping-programs-should-i-use" class="callout-inner">
+<h3 class="callout-title">What mapping programs should I use?</h3>
+<div class="callout-content">
+<p>One major requirement for a suitable RNAseq mapping program is that
+it should be splice-aware. This means the program must be able to handle
+reads that span exon-exon junctions, which is crucial for RNAseq data
+since the reads are derived from spliced transcripts. <code>STAR</code>
+is a widely used splice-aware aligner for RNAseq, known for its speed
+and accuracy when mapping reads to a reference genome. Other popular
+RNAseq aligners include <code>HISAT2</code> and, for certain
+applications, <code>Bowtie2</code>. It’s important not to use DNA
+aligners like <code>BWA</code>, which are not designed to handle spliced
+reads.</p>
+</div>
+</div>
+</div>
+<div id="how-does-read-quality-affect-alignment-performance" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<div id="how-does-read-quality-affect-alignment-performance" class="callout-inner">
+<h3 class="callout-title">How does read quality affect alignment performance?</h3>
+<div class="callout-content">
+<p>The quality of the reads can have a significant impact on the
+alignment performance and thus your downstream analysis.</p>
+<ul>
+<li>Uneven Read Quality: poor quality of the reads can result in partial
+alignments or truncated read mapping, leaving you with large portions of
+the read unmapped.</li>
+<li>Overrepresented Sequences: such as ribosomal RNA, or microbial
+contamination, can lead to too many multi-mapped reads.</li>
+<li>Poor library preparation: can result in RNAseq reads that consist
+primarily of adapter sequences without any actual biological content -
+this can result in too many unmapped reads.</li>
+<li>Short Reads from Over-trimming: an shorten reads to the point where
+they are too short to align uniquely, leading to either multimapping or
+unmapped reads.</li>
+</ul>
+<p>It is crucial to check the quality of the reads before mapping and
+also alignment statistics after mapping.</p>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="structuring-your-working-directory">Structuring your working directory<a class="anchor" aria-label="anchor" href="#structuring-your-working-directory"></a>
+</h2>
+<hr class="half-width">
+<div id="create-the-directories-for-subsequent-episodes" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="create-the-directories-for-subsequent-episodes" class="callout-inner">
+<h3 class="callout-title">Create the directories for subsequent episodes</h3>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="using-rstudio-project-to-manage-your-working-directory">Using RStudio project to manage your working directory<a class="anchor" aria-label="anchor" href="#using-rstudio-project-to-manage-your-working-directory"></a>
+</h2>
+<hr class="half-width"></section><section><h2 class="section-heading" id="download-the-rna-seq-data-for-subsequent-episodes">Download the RNA-seq data for subsequent episodes<a class="anchor" aria-label="anchor" href="#download-the-rna-seq-data-for-subsequent-episodes"></a>
+</h2>
+<hr class="half-width">
+<div id="download-the-remaining-data-set-files" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="download-the-remaining-data-set-files" class="callout-inner">
+<h3 class="callout-title">Download the remaining data set files</h3>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+
+</div>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-02-setup"><p>Content from <a href="02-setup.html">RStudio Project and Experimental Data</a></p>
 <hr>
 <p>Last updated on 2024-08-30 |
 
@@ -1305,7 +1850,7 @@ have to do to remove those (generally speaking, not exact codes)?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>In <code>counts</code>, the rows are genes just like the rows in
@@ -1431,7 +1976,7 @@ codes.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1809,7 +2354,7 @@ day 8?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb46">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1937,7 +2482,7 @@ codes and then check you correctly got the 21,198 mRNA genes:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb55">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3892,7 +4437,7 @@ mean expression of a gene between male and female mice?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3979,7 +4524,7 @@ Day4, Day8) in the male spinal cord samples, and visualize it using
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -5195,7 +5740,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-07-gene-set-analysis"><p>Content from <a href="07-gene-set-analysis.html">Gene set enrichment analysis</a></p>
 <hr>
-<p>Last updated on 2024-08-30 |
+<p>Last updated on 2024-09-05 |
 
         <a href="https://aseetharam.github.io/rcac_rnaseq_workshop/edit/main/episodes/07-gene-set-analysis.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -5791,9 +6336,9 @@ distribution of its statistic.</p>
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>Unit: microseconds
-   expr     min       lq      mean   median      uq     max neval
- fisher 244.987 252.3005 273.70843 256.0975 278.790 455.399   100
-  hyper   1.463   1.7730   2.88471   2.8455   3.301  20.107   100</code></pre>
+   expr     min       lq      mean   median       uq     max neval
+ fisher 244.635 248.5385 259.11976 250.6975 258.1865 506.174   100
+  hyper   1.442   1.5880   2.39643   1.7735   2.8500  19.206   100</code></pre>
 </div>
 <p>It is very astonishing that <code>phyper()</code> is hundreds of
 times faster than <code>fisher.test()</code>. Main reason is in
@@ -5855,7 +6400,7 @@ description of its biological meaning; It corresponds to the knowledge
 of the gene set and is for the inference of the analysis. “GO gene sets”
 and “pathways” specifically refer to the enrichment analysis using GO
 gene sets and pahtway gene sets.</p>
-<figure><img src="fig/geneset.svg" class="figure mx-auto d-block"></figure><p>Before we touch the gene set databases, we first summarize the
+<figure><img src="fig/geneset.svg" alt="Gene set, biological term and GO gene set" class="figure mx-auto d-block"></figure><p>Before we touch the gene set databases, we first summarize the
 general formats of gene sets in R. In most analysis, a gene set is
 simply treated as a vector of genes. Thus, naturally, a collection of
 gene sets can be represented as a list of vectors. In the following
@@ -6426,7 +6971,7 @@ collections it provides.</p>
 sets. Some gene sets collections may have sub-collections, and they are
 shown in the second column. The description of gene sets collections
 from MSigDB is in the following figure.</p>
-<figure><img src="fig/msigdb.png" class="figure mx-auto d-block"></figure><p>The core function <code>msigdbr()</code> retrieves gene sets in a
+<figure><img src="fig/msigdb.png" alt="MSigDB gene sets collections" class="figure mx-auto d-block"></figure><p>The core function <code>msigdbr()</code> retrieves gene sets in a
 specific category (or a subcategory if it exists).</p>
 <div class="codewrapper sourceCode" id="cb62">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -6608,7 +7153,7 @@ sets are automatically retrieved and processed from
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>--&gt; Expected input gene ID: 54388,102631559,77782,243897,270624,67378</code></pre>
+<pre class="output" tabindex="0"><code>--&gt; Expected input gene ID: 19229,13711,231832,16433,72236,13525</code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -6892,19 +7437,19 @@ mmu00592                               alpha-Linolenic acid metabolism - Mus mus
 mmu04913                                       Ovarian steroidogenesis - Mus musculus (house mouse)
 mmu04061 Viral protein interaction with cytokine and cytokine receptor - Mus musculus (house mouse)
          GeneRatio BgRatio RichFactor FoldEnrichment   zScore       pvalue
-mmu00590    16/460 89/9773  0.1797753       3.819443 5.938227 3.291865e-06
-mmu00591    12/460 55/9773  0.2181818       4.635415 6.008592 7.078537e-06
-mmu00565    11/460 48/9773  0.2291667       4.868795 5.971417 1.035129e-05
-mmu00592     8/460 25/9773  0.3200000       6.798609 6.451518 1.206537e-05
-mmu04913    12/460 64/9773  0.1875000       3.983560 5.321859 3.603009e-05
-mmu04061    14/460 95/9773  0.1473684       3.130938 4.638373 1.321297e-04
+mmu00590    16/460 89/9775  0.1797753       3.820225 5.939230 3.283279e-06
+mmu00591    12/460 55/9775  0.2181818       4.636364 6.009512 7.063895e-06
+mmu00565    11/460 48/9775  0.2291667       4.869792 5.972311 1.033142e-05
+mmu00592     8/460 25/9775  0.3200000       6.800000 6.452371 1.204741e-05
+mmu04913    12/460 64/9775  0.1875000       3.984375 5.322738 3.595842e-05
+mmu04061    14/460 95/9775  0.1473684       3.131579 4.639265 1.318477e-04
              p.adjust       qvalue
-mmu00590 0.0009320498 0.0008096498
-mmu00591 0.0009320498 0.0008096498
-mmu00565 0.0009320498 0.0008096498
-mmu00592 0.0009320498 0.0008096498
-mmu04913 0.0022266593 0.0019342467
-mmu04061 0.0068046814 0.0059110671
+mmu00590 0.0009306627 0.0008084448
+mmu00591 0.0009306627 0.0008084448
+mmu00565 0.0009306627 0.0008084448
+mmu00592 0.0009306627 0.0008084448
+mmu04913 0.0022222304 0.0019303995
+mmu04061 0.0067901568 0.0058984499
                                                                                                        geneID
 mmu00590 18783/19215/211429/329502/78390/19223/67103/242546/13118/18781/18784/11689/232889/15446/237625/11687
 mmu00591                        18783/211429/329502/78390/242546/18781/18784/13113/622127/232889/237625/11687
@@ -7551,7 +8096,7 @@ visualization.</p>
 <!-- Carpentry CI cannot install RcppParallel which is indirectly depended by simplifyenrichment,
     so the plot is not generated on the fly.
  -->
-<figure><img src="fig/simplifyEnrichment.png" class="figure mx-auto d-block"></figure><div id="further-reading-5" class="callout">
+<figure><img src="fig/simplifyEnrichment.png" alt="simplifyEnrichment" width="600" class="figure mx-auto d-block"></figure><div id="further-reading-5" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -7756,7 +8301,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.6" class="external-link">sandpaper (0.16.6)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/aseetharam/varnish/tree/4189f1f22ae1372d077a4d4c9a01d27441264c56" class="external-link">varnish (1.0.4)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.7" class="external-link">sandpaper (0.16.7)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/aseetharam/varnish/tree/4189f1f22ae1372d077a4d4c9a01d27441264c56" class="external-link">varnish (1.0.4)</a></p>
 			</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -7779,8 +8324,8 @@ any links that you are not going to use.
   "url": "https://rcac_rnaseq_workshop.github.io/NA/aio.html",
   "identifier": "https://rcac_rnaseq_workshop.github.io/NA/aio.html",
   "dateCreated": "2024-08-30",
-  "dateModified": "2024-09-03",
-  "datePublished": "2024-09-03"
+  "dateModified": "2024-09-05",
+  "datePublished": "2024-09-05"
 }
 
   </script><script>

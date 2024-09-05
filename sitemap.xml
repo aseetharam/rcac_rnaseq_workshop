@@ -4,6 +4,12 @@
     <loc>https://rcac_rnaseq_workshop.github.io/NA/01-intro-to-rnaseq.html</loc>
   </url>
   <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/01a-from-reads-to-counts.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/01b-mapping-reads.html</loc>
+  </url>
+  <url>
     <loc>https://rcac_rnaseq_workshop.github.io/NA/02-setup.html</loc>
   </url>
   <url>
@@ -47,6 +53,12 @@
   </url>
   <url>
     <loc>https://rcac_rnaseq_workshop.github.io/NA/instructor/01-intro-to-rnaseq.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/instructor/01a-from-reads-to-counts.html</loc>
+  </url>
+  <url>
+    <loc>https://rcac_rnaseq_workshop.github.io/NA/instructor/01b-mapping-reads.html</loc>
   </url>
   <url>
     <loc>https://rcac_rnaseq_workshop.github.io/NA/instructor/02-setup.html</loc>

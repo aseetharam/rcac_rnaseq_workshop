@@ -67,6 +67,8 @@ contact: 'aseethar@purdue.edu'
 # Order of episodes in your lesson
 episodes: 
 - 01-intro-to-rnaseq.Rmd
+- 01a-from-reads-to-counts.Rmd
+- 01b-mapping-reads.Rmd
 - 02-setup.Rmd
 - 03-import-annotate.Rmd
 - 04-exploratory-qc.Rmd
@@ -78,12 +80,15 @@ episodes:
 
 # Information for Learners
 learners: 
+- setup.md
 
 # Information for Instructors
 instructors: 
+- instructor-notes.md
 
 # Learner Profiles
 profiles: 
+- learner-profiles.md
 
 # Customisation ---------------------------------------------
 #
