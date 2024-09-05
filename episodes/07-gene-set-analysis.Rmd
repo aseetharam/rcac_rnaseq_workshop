@@ -527,7 +527,7 @@ the knowledge of the gene set and is for the inference of the analysis. "GO
 gene sets" and "pathways" specifically refer to the enrichment analysis using
 GO gene sets and pahtway gene sets.
 
-<img src="fig/geneset.svg" />
+<img src="fig/geneset.svg" alt="Gene set, biological term and GO gene set" />
 
 Before we touch the gene set databases, we first summarize the general formats
 of gene sets in R. In most analysis, a gene set is simply treated as a vector
@@ -847,7 +847,7 @@ Some gene sets collections may have sub-collections, and they are shown in the
 second column. The description of gene sets collections from MSigDB is in the
 following figure.
 
-<img src="fig/msigdb.png" />
+<img src="fig/msigdb.png" alt="MSigDB gene sets collections" />
 
 The core function `msigdbr()` retrieves gene sets in a specific category (or a
 subcategory if it exists).
@@ -1533,7 +1533,7 @@ simplifyGO(GO_ID)
     so the plot is not generated on the fly.
  -->
 
-<img src="fig/simplifyEnrichment.png" />
+<img src="fig/simplifyEnrichment.png" alt="simplifyEnrichment" width="600"/>
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
