@@ -268,7 +268,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="02-setup.html">4. RStudio Project and Experimental Data</a>
+        <a href="01c-count-features.html">4. Quantifying Gene Expression</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -280,7 +280,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="03-import-annotate.html">5. Importing and annotating quantified data into R</a>
+        <a href="02-setup.html">5. RStudio Project and Experimental Data</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -292,7 +292,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="04-exploratory-qc.html">6. Exploratory analysis and quality control</a>
+        <a href="03-import-annotate.html">6. Importing and annotating quantified data into R</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -304,7 +304,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="05-differential-expression.html">7. Differential expression analysis</a>
+        <a href="04-exploratory-qc.html">7. Exploratory analysis and quality control</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -316,7 +316,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="06-extra-design.html">8. Extra exploration of design matrices</a>
+        <a href="05-differential-expression.html">8. Differential expression analysis</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -328,7 +328,7 @@
 <div class="accordion accordion-flush" id="accordionFlush10">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading10">
-        <a href="07-gene-set-analysis.html">9. Gene set enrichment analysis</a>
+        <a href="06-extra-design.html">9. Extra exploration of design matrices</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -340,7 +340,19 @@
 <div class="accordion accordion-flush" id="accordionFlush11">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading11">
-        <a href="08-next-steps.html">10. Next steps</a>
+        <a href="07-gene-set-analysis.html">10. Gene set enrichment analysis</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush12">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading12">
+        <a href="08-next-steps.html">11. Next steps</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -433,7 +445,43 @@ data handling and analysis.</li>
 <li>Tools such as <code>wget</code> and <code>fasterq-dump</code> can be
 used to download data files from public repositories.</li>
 </ul></section><section id="01b-mapping-reads"><h2 class="section-heading"><a href="01b-mapping-reads.html">Mapping reads to a reference genome</a></h2>
-<hr class="half-width"></section><section id="02-setup"><h2 class="section-heading"><a href="02-setup.html">RStudio Project and Experimental Data</a></h2>
+<hr class="half-width">
+<ul>
+<li><p>Mapping Raw Reads: The process of mapping involves aligning short
+reads from sequencing data to a reference genome to determine their
+locations. STAR, a splice-aware RNA-seq aligner, is commonly used due to
+its speed and accuracy in handling exon-exon junctions.</p></li>
+<li><p>Impact of Read Quality: Poor read quality, such as
+over-represented sequences or low-quality bases, can lead to unmapped or
+multi-mapped reads. It is important to check the quality of reads before
+mapping and review alignment statistics after mapping to ensure data
+quality.</p></li>
+<li><p>Reference Genome Indexing: Before mapping, the reference genome
+needs to be indexed using tools like STAR. Indexing creates a data
+structure to facilitate rapid alignment, and additional files like
+GTF/GFF annotations can improve alignment accuracy.</p></li>
+<li><p>Optimizing Mapping: Fine-tuning mapping parameters (e.g.,
+handling multi-mapped reads, controlling sensitivity) based on the
+dataset is essential. The STAR aligner offers numerous options that
+allow adjustment for specific genome types and read qualities.</p></li>
+</ul></section><section id="01c-count-features"><h2 class="section-heading"><a href="01c-count-features.html">Quantifying Gene Expression</a></h2>
+<hr class="half-width">
+<ul>
+<li><p>Quantifying gene expression involves counting the number of reads
+mapped to genomic features like genes or exons, which provides data for
+downstream analyses, such as differential gene expression.</p></li>
+<li><p>Tools like <code>featureCounts</code>, <code>RSEM</code>,
+<code>HTSeq-count</code>, <code>Salmon</code>, and <code>Kallisto</code>
+are commonly used for counting reads, each offering different advantages
+based on feature type and data structure.</p></li>
+<li><p>Depending on the research question, reads can be counted at
+various feature levels, such as genes, exons, or transcripts, to capture
+overall gene expression or more granular details like splicing
+events.</p></li>
+<li><p>The output of a read counting tool typically includes read counts
+for each feature across all samples, serving as input for further
+analysis, such as identifying differentially expressed genes.</p></li>
+</ul></section><section id="02-setup"><h2 class="section-heading"><a href="02-setup.html">RStudio Project and Experimental Data</a></h2>
 <hr class="half-width">
 <ul>
 <li>Proper organisation of the files required for your project in a

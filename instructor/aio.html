@@ -268,7 +268,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="02-setup.html">4. RStudio Project and Experimental Data</a>
+        <a href="01c-count-features.html">4. Quantifying Gene Expression</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -280,7 +280,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="03-import-annotate.html">5. Importing and annotating quantified data into R</a>
+        <a href="02-setup.html">5. RStudio Project and Experimental Data</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -292,7 +292,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="04-exploratory-qc.html">6. Exploratory analysis and quality control</a>
+        <a href="03-import-annotate.html">6. Importing and annotating quantified data into R</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -304,7 +304,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="05-differential-expression.html">7. Differential expression analysis</a>
+        <a href="04-exploratory-qc.html">7. Exploratory analysis and quality control</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -316,7 +316,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="06-extra-design.html">8. Extra exploration of design matrices</a>
+        <a href="05-differential-expression.html">8. Differential expression analysis</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -328,7 +328,7 @@
 <div class="accordion accordion-flush" id="accordionFlush10">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading10">
-        <a href="07-gene-set-analysis.html">9. Gene set enrichment analysis</a>
+        <a href="06-extra-design.html">9. Extra exploration of design matrices</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -340,7 +340,19 @@
 <div class="accordion accordion-flush" id="accordionFlush11">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading11">
-        <a href="08-next-steps.html">10. Next steps</a>
+        <a href="07-gene-set-analysis.html">10. Gene set enrichment analysis</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush12">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading12">
+        <a href="08-next-steps.html">11. Next steps</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -1107,7 +1119,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-01b-mapping-reads"><p>Content from <a href="01b-mapping-reads.html">Mapping reads to a reference genome</a></p>
 <hr>
-<p>Last updated on 2024-09-05 |
+<p>Last updated on 2024-09-10 |
 
         <a href="https://aseetharam.github.io/rcac_rnaseq_workshop/edit/main/episodes/01b-mapping-reads.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 45 minutes</p>
@@ -1187,34 +1199,61 @@ reads.</p>
 <p>The quality of the reads can have a significant impact on the
 alignment performance and thus your downstream analysis.</p>
 <ul>
-<li>Uneven Read Quality: poor quality of the reads can result in partial
-alignments or truncated read mapping, leaving you with large portions of
-the read unmapped.</li>
-<li>Overrepresented Sequences: such as ribosomal RNA, or microbial
-contamination, can lead to too many multi-mapped reads.</li>
-<li>Poor library preparation: can result in RNAseq reads that consist
-primarily of adapter sequences without any actual biological content -
-this can result in too many unmapped reads.</li>
-<li>Short Reads from Over-trimming: an shorten reads to the point where
-they are too short to align uniquely, leading to either multimapping or
-unmapped reads.</li>
+<li>
+<strong>Uneven read quality</strong>: poor quality of the reads can
+result in partial alignments or truncated read mapping, leaving you with
+large portions of the read unmapped.</li>
+<li>
+<strong>Overrepresented sequences</strong>: such as ribosomal RNA,
+or microbial contamination, can lead to too many multi-mapped
+reads.</li>
+<li>
+<strong>Poor library preparation</strong>: can result in RNAseq
+reads that consist primarily of adapter sequences without any actual
+biological content - this can result in too many unmapped reads.</li>
+<li>
+<strong>Over-processing</strong> Short reads from over-trimming can
+shorten reads to the point where they are too short to align uniquely,
+leading to either multimapping or unmapped reads.</li>
 </ul>
 <p>It is crucial to check the quality of the reads before mapping and
 also alignment statistics after mapping.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="structuring-your-working-directory">Structuring your working directory<a class="anchor" aria-label="anchor" href="#structuring-your-working-directory"></a>
+</section><section><h2 class="section-heading" id="preparing-for-read-mapping">Preparing for read mapping<a class="anchor" aria-label="anchor" href="#preparing-for-read-mapping"></a>
 </h2>
 <hr class="half-width">
-<div id="create-the-directories-for-subsequent-episodes" class="callout challenge">
+<p>Before we start mapping the reads, we need to prepare the reference
+genome. Mapping programs require the reference genome to be indexed.
+Indexing is the process of creating a data structure that allows the
+mapping program to quickly search the reference genome for the best
+alignment of the reads. <code>STAR</code> requires the reference genome
+to be indexed before mapping. Mapping programs can also use
+<code>GTF</code> or <code>GFF</code> files to guide the alignment
+process. These files contain information about the gene models in the
+reference genome, such as the location of exons and introns, that can
+speed up the alignment process.</p>
+<p>We will use the reference genome and annotations that we downloaded
+in the previous episode and index it using <code>STAR</code>.</p>
+</section><section><h2 class="section-heading" id="indexing">Indexing<a class="anchor" aria-label="anchor" href="#indexing"></a>
+</h2>
+<hr class="half-width">
+<p>STAR has <code>--runMode</code> option where you can alter the
+function of the program. When <code>genomeGenerate</code> is specified
+with this option, it can be used for indexing.</p>
+<div id="generating-genome-indexes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="create-the-directories-for-subsequent-episodes" class="callout-inner">
-<h3 class="callout-title">Create the directories for subsequent episodes</h3>
+<div id="generating-genome-indexes" class="callout-inner">
+<h3 class="callout-title">Generating genome indexes</h3>
 <div class="callout-content">
-
+<p>There are many options for the <code>STAR</code> program to index the
+reference genome. You will need the reference genome fasta file that
+needs to indexed, but there are many other options as well. Can you <a href="https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf" class="external-link">check
+the manual</a> and find options that are important for indexing the
+reference genome?</p>
 </div>
 </div>
 </div>
@@ -1223,26 +1262,167 @@ also alignment statistics after mapping.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-
+<p>In page 5, Section 2, “Generating genome indexes” discuss the options
+for indexing the reference genome. You will need to use
+<code>--runMode genomeGenerate</code> for indexing. Important options
+for indexing are:</p>
+<ul>
+<li>
+<code>runThreadN</code> number of threads to use</li>
+<li>
+<code>genomeDir</code> output directory for the genome indexes</li>
+<li>
+<code>genomeFastaFiles</code> reference genome fasta file</li>
+<li>
+<code>sjdbGTFfile</code> the GTF file</li>
+<li>
+<code>sjdbOverhang</code> default value of 100 works well, for most
+cases this can be omitted</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="using-rstudio-project-to-manage-your-working-directory">Using RStudio project to manage your working directory<a class="anchor" aria-label="anchor" href="#using-rstudio-project-to-manage-your-working-directory"></a>
-</h2>
-<hr class="half-width"></section><section><h2 class="section-heading" id="download-the-rna-seq-data-for-subsequent-episodes">Download the RNA-seq data for subsequent episodes<a class="anchor" aria-label="anchor" href="#download-the-rna-seq-data-for-subsequent-episodes"></a>
+<p>We will also need SLURM directives to submit the job to the cluster.
+The number of threads to use can be specified using the
+<code>--cpus-per-task</code> directive. The script to index the
+reference genome using <code>STAR</code> would look like this:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co">#SBATCH --nodes=1</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co">#SBATCH --ntasks=1</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task=4</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#SBATCH --time=1:00:00</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#SBATCH --job-name=index_genome</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co">#SBATCH --output=cluster-%x.%j.out</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co">#SBATCH --error=cluster-%x.%j.out</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="ex">ml</span> star</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="va">genome</span><span class="op">=</span><span class="st">"/home/aseethar/rcac_rnaseq/data/GRCm39.primary_assembly.genome.fa"</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="va">genomeDir</span><span class="op">=</span><span class="st">"/home/aseethar/rcac_rnaseq/data/star_index"</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="va">gtf</span><span class="op">=</span><span class="st">"/home/aseethar/rcac_rnaseq/data/gencode.vM35.primary_assembly.basic.annotation.gtf"</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="ex">STAR</span> <span class="dt">\</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>   <span class="at">--runThreadN</span> 4<span class="dt">\</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>   <span class="at">--runMode</span> genomeGenerate <span class="dt">\</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>   <span class="at">--genomeDir</span> <span class="va">${genomeDir}</span> <span class="dt">\</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>   <span class="at">--genomeFastaFiles</span> <span class="va">${genome}</span> <span class="dt">\</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>   <span class="at">--sjdbGTFfile</span> <span class="va">${gtf}</span></span></code></pre>
+</div>
+<p>The script can be saved in a file, say <code>index_genome.sh</code>,
+within the <code>scripts</code> directory. It should be submitted as a
+slurm job after making it executable.</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">chmod</span> +x index_genome.sh</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">sbatch</span> index_genome.sh</span></code></pre>
+</div>
+<p>It takes about 30-45 minutes to complete the indexing process.</p>
+<div id="is-gtf-file-necessary-for-indexing" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<div id="is-gtf-file-necessary-for-indexing" class="callout-inner">
+<h3 class="callout-title">Is GTF file necessary for indexing?</h3>
+<div class="callout-content">
+<p>The GTF file is not necessary for indexing the reference genome, but
+will be useful for alignment process. The GTF file contains information
+about the gene models in the reference genome, such as the location of
+exons and introns, that can speed up the alignment process. If you have
+a GTF file, it is recommended to use it when indexing the reference
+genome.</p>
+</div>
+</div>
+</div>
+<div id="can-i-use-gff3-file-instead" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<div id="can-i-use-gff3-file-instead" class="callout-inner">
+<h3 class="callout-title">Can I use GFF3 file instead?</h3>
+<div class="callout-content">
+<p>Yes, you can use GFF3 file instead of GTF file. STAR can handle both
+GTF and GFF3 files. In addition to the aforementioned options, for GFF3
+formatted annotations you need to use
+<code>--sjdbGTFtagExonParentTranscript Parent</code>. But if you have
+issues with GFF3, you can convert it to GTF using <code>gffread</code>
+from the <code>Cufflinks</code> package.</p>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="mapping-reads-to-the-reference-genome">Mapping reads to the reference genome<a class="anchor" aria-label="anchor" href="#mapping-reads-to-the-reference-genome"></a>
 </h2>
 <hr class="half-width">
-<div id="download-the-remaining-data-set-files" class="callout challenge">
+<p>After indexing, our genome is ready for mapping reads. The
+<code>STAR</code> program has many options that can be used to fine-tune
+the mapping process. You can <a href="https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf" class="external-link">check
+the manual</a> and find options that are important for mapping reads to
+the reference genome.</p>
+<p>For mapping, you will need to use <code>--runMode alignReads</code>
+important options for aligning reads are:</p>
+<ul>
+<li>
+<code>runThreadN</code> number of threads to use</li>
+<li>
+<code>readFilesIn</code> fastq files to be aligned, can be single (1
+file) or paired-end (2 files)</li>
+<li>
+<code>genomeDir</code> reference genome index directory</li>
+</ul>
+<p>For output options, you can use:</p>
+<ul>
+<li>
+<code>outFileNamePrefix</code> prefix for all output files</li>
+<li>
+<code>outSAMtype</code>: output filetype (SAM default), but can be
+BAM, CRAM, etc.</li>
+<li>
+<code>outSAMunmapped</code>: handling of unmapped reads</li>
+</ul>
+<div id="what-other-mapping-options-should-i-consider" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<div id="what-other-mapping-options-should-i-consider" class="callout-inner">
+<h3 class="callout-title">What other mapping options should I consider?</h3>
+<div class="callout-content">
+<p>STAR’s default parameters are optimized for mammalian genomes. If you
+are using for other genomes like plant, fungi or any other species, you
+may need to fine-tune your mapping options:</p>
+<ul>
+<li>When using compressed reads, option <code>readFilesCommand</code>
+with <em>UncompressionCommand</em> can be used. If using gzipped files
+(<code>*.gz</code>) use <code>--readFilesCommand zcat</code> OR
+<code>--readFilesCommand gunzip -c</code>. For <code>bzip2</code>
+compressed files, use <code>--readFilesCommand bunzip2 -c</code>.</li>
+<li>For controling the multi-mapped reads, options like
+<code>outFilterMultimapNmax</code> (default 10) and
+<code>winAnchorMultimapNmax</code> can be used. Useful when you have
+polyploid genomes or repetitive regions.</li>
+<li>For controlling mapping sensitivity, options like
+<code>outFilterMismatchNmax</code> (default 10) and
+<code>outFilterMismatchNoverLmax</code> can be used.</li>
+<li>Shorter reads may require lower <code>outFilterMismatchNmax</code>
+and <code>outFilterMismatchNoverLmax</code> values.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="script-for-mapping-reads" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="download-the-remaining-data-set-files" class="callout-inner">
-<h3 class="callout-title">Download the remaining data set files</h3>
+<div id="script-for-mapping-reads" class="callout-inner">
+<h3 class="callout-title">Script for mapping reads</h3>
 <div class="callout-content">
-
+<p>Write a script to map the reads to the reference genome using
+<code>STAR</code>. You will need the reference genome index directory,
+fastq files to be aligned, and output directory. Can you write a mapping
+command for <code>STAR</code>?</p>
 </div>
 </div>
 </div>
@@ -1251,10 +1431,84 @@ also alignment statistics after mapping.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">STAR</span> <span class="at">--runMode</span> alignReads <span class="dt">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>     <span class="at">--runThreadN</span> 12 <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>     <span class="at">--genomeDir</span> /home/aseethar/rcac_rnaseq/data/star_index <span class="dt">\</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>     <span class="at">--readFilesIn</span> SRR1234567_1.fastq.gz SRR1234567_2.fastq <span class="dt">\</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>     <span class="at">--outFileNamePrefix</span> SRR1234567 <span class="dt">\</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>     <span class="at">--outSAMtype</span> BAM SortedByCoordinate <span class="dt">\</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>     <span class="at">--outSAMunmapped</span> Within</span></code></pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<p>Since we have 45 sets of fastq files, we can write an array job for
+mapping all the reads. The script to map the reads using
+<code>STAR</code> would look like this:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">#SBATCH --nodes=1</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">#SBATCH --ntasks=1</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task=12</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#SBATCH --time=8:00:00</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#SBATCH --job-name=read_mapping</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#SBATCH --array=1-45    </span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#SBATCH --output=cluster-%x.%j.out</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#SBATCH --error=cluster-%x.%j.out</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="ex">ml</span> star</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co"># Define paths</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="va">FASTQ_DIR</span><span class="op">=</span><span class="st">"/home/aseethar/rcac_rnaseq/data/fastq"</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="va">GENOME_INDEX</span><span class="op">=</span><span class="st">"/home/aseethar/rcac_rnaseq/data/star_index"</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="va">OUTPUT_DIR</span><span class="op">=</span><span class="st">"/home/aseethar/rcac_rnaseq/data/mapping"</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co"># Create an array of FASTQ file pairs</span></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="va">FASTQ_R1</span><span class="op">=</span><span class="va">($FASTQ_DIR</span>/<span class="pp">*</span>_R1_<span class="pp">*</span>.fastq.gz<span class="va">)</span>   <span class="co"># List of all R1 files</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="va">FASTQ_R2</span><span class="op">=</span><span class="va">($FASTQ_DIR</span>/<span class="pp">*</span>_R2_<span class="pp">*</span>.fastq.gz<span class="va">)</span>   <span class="co"># List of all R2 files</span></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co"># Get the FASTQ file for this array job</span></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="va">R1</span><span class="op">=</span><span class="va">${FASTQ_R1</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span>-1<span class="op">]</span><span class="va">}</span></span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="va">R2</span><span class="op">=</span><span class="va">${FASTQ_R2</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span>-1<span class="op">]</span><span class="va">}</span></span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="co"># Extract sample name from FASTQ file</span></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="va">SAMPLE</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="va">$R1</span> _R1_001.fastq.gz<span class="va">)</span></span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="co"># Run STAR alignment for the current pair of FASTQ files</span></span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="ex">STAR</span> <span class="at">--runThreadN</span> 4 <span class="dt">\</span></span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a>     <span class="at">--genomeDir</span> <span class="va">$GENOME_INDEX</span> <span class="dt">\</span></span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a>     <span class="at">--readFilesIn</span> <span class="va">$R1</span> <span class="va">$R2</span> <span class="dt">\</span></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a>     <span class="at">--readFilesCommand</span> zcat <span class="dt">\</span></span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a>     <span class="at">--outFileNamePrefix</span> <span class="va">$OUTPUT_DIR</span>/<span class="va">$SAMPLE</span> <span class="dt">\</span></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a>     <span class="at">--outSAMunmapped</span> Within <span class="dt">\</span></span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a>     <span class="at">--outSAMtype</span> BAM SortedByCoordinate</span></code></pre>
+</div>
+<p>The job can be submitted as an array job using the following
+command:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">chmod</span> +x map_reads.sh</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">sbatch</span> <span class="at">--array</span><span class="op">=</span>1-45 map_reads.sh</span></code></pre>
+</div>
+<p>Since we have already finished mapping the reads, we can skip this
+and move on to the next step.</p>
+<div id="can-i-use-star-for-counting-reads" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<div id="can-i-use-star-for-counting-reads" class="callout-inner">
+<h3 class="callout-title">Can I use STAR for counting reads?</h3>
+<div class="callout-content">
+<p>Yes, STAR can be used for counting reads. STAR can output the number
+of reads that map to each gene in the reference genome. This can be
+useful for differential gene expression analysis. You can use the
+<code>--quantMode</code> option to enable read counting. The
+<code>--quantMode</code> option can be set to <code>GeneCounts</code> to
+output the number of reads that map to each gene.</p>
 </div>
 </div>
 </div>
@@ -1265,7 +1519,329 @@ also alignment statistics after mapping.</p>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
+<ul>
+<li><p>Mapping Raw Reads: The process of mapping involves aligning short
+reads from sequencing data to a reference genome to determine their
+locations. STAR, a splice-aware RNA-seq aligner, is commonly used due to
+its speed and accuracy in handling exon-exon junctions.</p></li>
+<li><p>Impact of Read Quality: Poor read quality, such as
+over-represented sequences or low-quality bases, can lead to unmapped or
+multi-mapped reads. It is important to check the quality of reads before
+mapping and review alignment statistics after mapping to ensure data
+quality.</p></li>
+<li><p>Reference Genome Indexing: Before mapping, the reference genome
+needs to be indexed using tools like STAR. Indexing creates a data
+structure to facilitate rapid alignment, and additional files like
+GTF/GFF annotations can improve alignment accuracy.</p></li>
+<li><p>Optimizing Mapping: Fine-tuning mapping parameters (e.g.,
+handling multi-mapped reads, controlling sensitivity) based on the
+dataset is essential. The STAR aligner offers numerous options that
+allow adjustment for specific genome types and read qualities.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-01c-count-features"><p>Content from <a href="01c-count-features.html">Quantifying Gene Expression</a></p>
+<hr>
+<p>Last updated on 2024-09-10 |
 
+        <a href="https://aseetharam.github.io/rcac_rnaseq_workshop/edit/main/episodes/01c-count-features.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 35 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do we quantify gene expression from aligned reads?</li>
+<li>What tools can we use to count reads mapped to genes or other
+genomic features?</li>
+<li>What options do we need to consider for accurate read counting?</li>
+<li>How do we interpret read count outputs for downstream analyses?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Understand the process of read counting and its role in RNA-seq
+analysis.</li>
+<li>Learn how to use popular tools like <code>featureCounts</code> to
+count reads for genes or other genomic features.</li>
+<li>Recognize common challenges, such as handling overlapping features
+or isoforms, multimapped reads, and learn how to address them.</li>
+<li>Interpret read count outputs and prepare data for downstream
+analyses like differential expression.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<hr class="half-width">
+<p>In this episode, we will focus on counting the number of reads mapped
+to each genomic feature, such as genes or exons, a critical step in
+RNA-seq analysis. Accurate read counting provides the basis for
+downstream analyses, including differential gene expression. We will
+explore tools and methods used to assign reads to features and prepare
+the data for meaningful biological insights.</p>
+<p>There are quite a few tools available for counting reads in RNA-seq
+analysis, each with its strengths and limitations.</p>
+<div id="what-programs-should-i-use-for-counting" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<div id="what-programs-should-i-use-for-counting" class="callout-inner">
+<h3 class="callout-title">What programs should I use for counting?</h3>
+<div class="callout-content">
+<p>Some popular tools include:</p>
+<ul>
+<li>
+<code>featureCounts</code>: A fast and efficient tool for counting
+reads aligned to genomic features such as genes, exons, or
+transcripts.</li>
+<li>
+<code>HTSeq-count</code>: Widely used for counting reads mapped to
+genes or other genomic features in RNA-seq experiments.</li>
+<li>
+<code>RSEM</code>: For quantifying transcript-level expression using
+RNA-seq data, particularly for isoform-level counts.</li>
+<li>
+<code>Salmon</code> &amp; <code>Kallisto</code>: Pseudo-alignment
+tools that provide transcript-level quantification directly from raw
+reads.</li>
+<li>
+<code>STAR</code>: Includes options like
+<code>--quantMode GeneCounts</code> for gene-level read counting during
+the alignment process.</li>
+</ul>
+</div>
+</div>
+</div>
+<p>In this episode, we will focus on using <code>featureCounts</code>, a
+popular tool for counting reads mapped to genomic features. We will
+explore its features, parameters, and output formats to understand how
+read counting influences downstream analyses like differential
+expression.</p>
+</section><section><h2 class="section-heading" id="organize-your-data">Organize your data<a class="anchor" aria-label="anchor" href="#organize-your-data"></a>
+</h2>
+<hr class="half-width">
+<p>We will need <code>bam</code> files for read counting. These were
+generated in the previous episode, by mapping RNAseq reads to the
+genome. We will softlink them from the <code>mapping</code> directory to
+the <code>counting</code> directory before proceeding.</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="bu">cd</span> rcac_rnaseq</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ../mapping/<span class="pp">*</span>.bam counts/</span></code></pre>
+</div>
+</section><section><h2 class="section-heading" id="counting-reads-with-featurecounts">Counting reads with <code>featureCounts</code>
+<a class="anchor" aria-label="anchor" href="#counting-reads-with-featurecounts"></a>
+</h2>
+<hr class="half-width">
+<p><code>featureCounts</code> is a widely used tool for counting reads
+mapped to genomic features, such as genes, exons, or transcripts. It is
+part of the <a href="http://subread.sourceforge.net/" class="external-link">Subread</a>
+package and provides a fast and efficient way to quantify gene
+expression from RNA-seq data. Genomic features are defined in a GTF
+(Gene Transfer Format) file, which contains the genomic coordinates of
+genes, exons, and other features. <code>bam</code> files provide the
+read alignments to the reference genome. Using the location information
+from the GTF file, <code>featureCounts</code> assigns read counts to
+features and generates count matrices for downstream analyses.</p>
+<div id="what-type-of-features-should-i-count-reads-for-genes-exons-transcripts" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<div id="what-type-of-features-should-i-count-reads-for-genes-exons-transcripts" class="callout-inner">
+<h3 class="callout-title">What type of features should I count reads for (genes, exons, transcripts)?</h3>
+<div class="callout-content">
+<p>When counting RNA-seq reads, the most common feature to count is
+genes, as it provides gene-level expression data for downstream
+analysis. However, if your study focuses on alternative splicing or
+transcript isoforms, counting exons or transcripts might be more
+appropriate. The choice depends on the biological question: gene-level
+counts for overall expression, exon-level for splicing events, or
+transcript-level for isoform-specific expression.</p>
+</div>
+</div>
+</div>
+<div id="what-options-do-you-need-to-specify-for-counting-reads" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="what-options-do-you-need-to-specify-for-counting-reads" class="callout-inner">
+<h3 class="callout-title">What options do you need to specify for counting reads?</h3>
+<div class="callout-content">
+<p>When using <code>featureCounts</code>, you need to specify several
+options to ensure accurate read counting. Take a look at the <a href="https://subread.sourceforge.net/featureCounts.html" class="external-link">featureCounts
+manual</a> and identify the key parameters you need to provide for
+counting reads. There are also example commands specified in the manual
+that you can use as a reference.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>The key parameters you need to specify for counting reads with
+<code>featureCounts</code> include:</p>
+<ul>
+<li>
+<code>-a</code>: Annotation file in GTF format containing genomic
+features.</li>
+<li>
+<code>-o</code>: Output file to store read counts.</li>
+<li>
+<code>-t</code>: Feature type to count (e.g., <code>gene</code>,
+<code>exon</code>, <code>transcript</code>).</li>
+<li>
+<code>-g</code>: Attribute type to group features (e.g.,
+<code>gene_id</code>, <code>transcript_id</code>).</li>
+<li>
+<code>-T</code>: Number of threads to use for parallel
+processing.</li>
+<li>
+<code>-p</code>: Count read pairs instead of individual reads (for
+paired-end data).</li>
+<li>
+<code>--countReadPairs</code>: Count read pairs instead of
+individual reads (when using paired-end data).</li>
+<li>
+<code>--primary</code>: Count only primary alignments.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>Putting it all together, the <code>featureCounts</code> command to
+count reads for genes in a BAM file would look like this:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">module</span> load biocontainers</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">module</span> load subread</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">featureCounts</span> <span class="dt">\</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>   <span class="at">-p</span> <span class="dt">\ </span># input is paired-end data</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>   <span class="ex">--countReadPairs</span> <span class="dt">\ </span># count read pairs instead of individual reads</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>   <span class="ex">-t</span> exon <span class="dt">\ </span># feature type to count</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>   <span class="ex">-g</span> gene_id <span class="dt">\ </span># attribute type to group features</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>   <span class="ex">-a</span> data/annotation.gtf <span class="dt">\ </span># annotation file in GTF format</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>   <span class="ex">-o</span> counts/counts.txt <span class="dt">\ </span># output file for read counts</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>   <span class="ex">counts/*.bam</span> <span class="co"># input BAM files</span></span></code></pre>
+</div>
+<p>You can do this as a job file and submit it to the cluster for
+processing. The output will be a tab-delimited file with read counts for
+each gene in each sample.</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#SBATCH --nodes=1</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#SBATCH --ntasks=1</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task=16</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#SBATCH --time=1:00:00</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#SBATCH --job-name=count-features</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#SBATCH --output=cluster-%x.%j.out</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#SBATCH --error=cluster-%x.%j.out</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="ex">ml</span> subread</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="va">gtf</span><span class="op">=</span><span class="st">"/home/aseethar/rcac_rnaseq/data/gencode.vM35.primary_assembly.basic.annotation.gtf"</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="ex">featureCounts</span> <span class="dt">\</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>   <span class="at">-p</span> <span class="dt">\ </span> </span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>   <span class="ex">--countReadPairs</span> <span class="dt">\</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>   <span class="at">-t</span> exon <span class="dt">\</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>   <span class="at">-T</span> 16 <span class="dt">\</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>   <span class="at">-g</span> gene_id <span class="dt">\</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>   <span class="at">-a</span> <span class="va">${gtf}</span> <span class="dt">\</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>   <span class="at">-o</span> counts/counts.txt <span class="dt">\</span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>   counts/<span class="pp">*</span>.bam</span></code></pre>
+</div>
+<p>You can submit this job file to the cluster using the
+<code>sbatch</code> command:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">sbatch</span> count_features.sh</span></code></pre>
+</div>
+<p>This will run the <code>featureCounts</code> command on the cluster,
+counting reads for each gene in the BAM files provided.</p>
+</section><section><h2 class="section-heading" id="understanding-the-output">Understanding the output<a class="anchor" aria-label="anchor" href="#understanding-the-output"></a>
+</h2>
+<hr class="half-width">
+<p>The output of <code>featureCounts</code> is a tab-delimited file
+containing read counts for each feature in each sample. The first few
+lines of the output file look like this:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">Geneid</span>  Chr Start   End Strand  Length  Sample1 Sample2 Sample3</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">ENSMUSG00000000001</span>  1   3073253 3074322 +   1069    0   0   0</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">ENSMUSG00000000003</span>  1   3102016 3102125 <span class="at">-</span>   110    0   0   0</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">ENSMUSG00000000028</span>  1   3491927 3513553 <span class="at">-</span>   21627   0   0   0</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="ex">ENSMUSG00000000031</span>  1   3461304 3513553 <span class="at">-</span>   52250   0   0   0</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="ex">ENSMUSG00000000037</span>  1   1442067 1467620 +   25554   0   0   0</span></code></pre>
+</div>
+<p>The columns in the output file include:</p>
+<ul>
+<li>
+<code>Geneid</code>: Gene identifier from the GTF file.</li>
+<li>
+<code>Chr</code>: Chromosome where the gene is located.</li>
+<li>
+<code>Start</code>: Start position of the gene.</li>
+<li>
+<code>End</code>: End position of the gene.</li>
+<li>
+<code>Strand</code>: Strand where the gene is located.</li>
+<li>
+<code>Length</code>: Length of the gene.</li>
+<li>
+<code>Sample1</code>, <code>Sample2</code>, <code>Sample3</code>,
+etc.: Read counts for each sample.</li>
+</ul>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<ul>
+<li><p>Quantifying gene expression involves counting the number of reads
+mapped to genomic features like genes or exons, which provides data for
+downstream analyses, such as differential gene expression.</p></li>
+<li><p>Tools like <code>featureCounts</code>, <code>RSEM</code>,
+<code>HTSeq-count</code>, <code>Salmon</code>, and <code>Kallisto</code>
+are commonly used for counting reads, each offering different advantages
+based on feature type and data structure.</p></li>
+<li><p>Depending on the research question, reads can be counted at
+various feature levels, such as genes, exons, or transcripts, to capture
+overall gene expression or more granular details like splicing
+events.</p></li>
+<li><p>The output of a read counting tool typically includes read counts
+for each feature across all samples, serving as input for further
+analysis, such as identifying differentially expressed genes.</p></li>
+</ul>
 </div>
 </div>
 </div>
@@ -1422,7 +1998,7 @@ directory, create the four fundamental directories previously discussed
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <figure style="text-align: center"><img src="../fig/02_setup/folders_working_dir.png" alt="Your working directory should look like this" width="1221" class="figure mx-auto d-block"><figcaption>
 Your working directory should look like this
@@ -1565,7 +2141,7 @@ into the <code>data</code> folder in your working directory.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1855,7 +2431,7 @@ have to do to remove those (generally speaking, not exact codes)?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>In <code>counts</code>, the rows are genes just like the rows in
@@ -1981,7 +2557,7 @@ codes.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2359,7 +2935,7 @@ day 8?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb46">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2487,7 +3063,7 @@ codes and then check you correctly got the 21,198 mRNA genes:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb55">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2856,7 +3432,7 @@ important considerations?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>
 </li></ol>
@@ -3143,7 +3719,7 @@ suggest?</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li><p>The major signal in this data (37% variance) is associated with
@@ -3186,7 +3762,7 @@ class <code>DESeqTransform</code> as input. You can transform a
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -6567,7 +7143,7 @@ convert a list to a two-column data frame?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb38">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
