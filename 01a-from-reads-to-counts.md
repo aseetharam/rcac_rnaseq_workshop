@@ -151,12 +151,19 @@ Similarly, what reference genome file will you download?
 Commands to donwload the files are as follows:
 
 ```bash
+cd rcac_rnaseq
 GTFlink="https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M35/gencode.vM35.primary_assembly.basic.annotation.gtf.gz"
 GENOMElink="https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M35/GRCm39.primary_assembly.genome.fa.gz"
 # Download the reference genome
 wget -P data ${GENOMElink}
 # Download the annotation file
 wget -P data ${GTFlink}
+# Check the files
+cd data
+ls
+# Uncompress the files
+gunzip GRCm39.primary_assembly.genome.fa.gz
+gunzip gencode.vM35.primary_assembly.basic.annotation.gtf.gz
 ```
 
 ## Raw reads
