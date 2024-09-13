@@ -30,7 +30,7 @@ exercises: 35
 
 <img src="fig/alternative_splicing_sub.png" alt="Illustration of part of the central dogma of molecular biology, where DNA is transcribed to RNA, and intronic sequences are spliced out"/>
 
-In order to produce an RNA molecule, a stretch of DNA is first transcribed into mRNA. 
+In order to produce an RNA molecule, a stretch of DNA is first transcribed into mRNA.
 Subsequently, intronic regions are spliced out, and exonic regions are combined into different _isoforms_ of a gene. 
 
 <img src="fig/rnaseq_martin_wang.png" alt="Illustration of the major experimental steps of an RNA-seq experiment"/>
