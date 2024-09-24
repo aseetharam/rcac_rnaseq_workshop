@@ -754,7 +754,7 @@ sessionInfo()
 ``` output
 R version 4.4.1 (2024-06-14)
 Platform: x86_64-pc-linux-gnu
-Running under: Ubuntu 22.04.4 LTS
+Running under: Ubuntu 22.04.5 LTS
 
 Matrix products: default
 BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.0 
@@ -785,7 +785,7 @@ other attached packages:
 loaded via a namespace (and not attached):
  [1] Matrix_1.7-0            bit_4.0.5               jsonlite_1.8.8         
  [4] highr_0.11              compiler_4.4.1          BiocManager_1.30.25    
- [7] renv_1.0.7              crayon_1.5.3            blob_1.2.4             
+ [7] renv_1.0.9              crayon_1.5.3            blob_1.2.4             
 [10] Biostrings_2.72.1       png_0.1-8               fastmap_1.2.0          
 [13] yaml_2.3.10             lattice_0.22-6          R6_2.5.1               
 [16] XVector_0.44.0          S4Arrays_1.4.1          DelayedArray_0.30.1    

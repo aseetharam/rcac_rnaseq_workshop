@@ -428,7 +428,7 @@ sessionInfo()
 ``` output
 R version 4.4.1 (2024-06-14)
 Platform: x86_64-pc-linux-gnu
-Running under: Ubuntu 22.04.4 LTS
+Running under: Ubuntu 22.04.5 LTS
 
 Matrix products: default
 BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.0 
@@ -478,7 +478,7 @@ loaded via a namespace (and not attached):
 [49] miniUI_0.1.1.1          lattice_0.22-6          tibble_3.2.1           
 [52] shiny_1.9.1             withr_3.0.1             evaluate_0.24.0        
 [55] circlize_0.4.16         pillar_1.9.0            affyio_1.74.0          
-[58] BiocManager_1.30.25     renv_1.0.7              DT_0.33                
+[58] BiocManager_1.30.25     renv_1.0.9              DT_0.33                
 [61] foreach_1.5.2           shinyjs_2.1.0           generics_0.1.3         
 [64] munsell_0.5.1           scales_1.3.0            xtable_1.8-4           
 [67] glue_1.7.0              tools_4.4.1             colourpicker_1.3.0     
